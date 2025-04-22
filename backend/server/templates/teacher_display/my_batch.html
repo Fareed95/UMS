@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/teacher/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teacher/my_batch.css' %}">
+    <script src="{% static 'js/profile.js' %}" defer></script>
+</head>
+<body>
+    <div>
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+    <div class="wrapper">
+        <ul>
+            <li><a href="{% url 'page_of_teacher' %}">Home</a></li>
+            <li><a href="{% url 'profile' %}">Your Profile</a></li>
+            <li><a href="#">Your Batch</a></li>
+            <li><a href="#">Documents</a></li>
+            <li><a href="#">Notices</a></li>
+            <li><a href="{%url 'logout'%}">Logout</a></li>
+        </ul>
+    </div>
+<div class="container my-5">
+    <h2>Welcome, Professor {{ professor_profile.user.name }}</h2>
+    <p>Here are your students in the {{ professor_profile.subject }} subject.</p>
+
+    <div class="row">
+        {% for student in students %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-img-top text-center p-4">
+                        {% if student.profile_image %}
+                            <img src="{{ student.profile_image.url }}" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile Image">
+                        {% else %}
+                            <img src="{% static 'default-profile.png' %}" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Default Profile Image">
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ student.user.name }}</h5>
+                        <p class="card-text"><strong>Branch:</strong> {{ student.branch }}</p>
+                        <p class="card-text"><strong>Course:</strong> {{ student.course }}</p>
+                        <p class="card-text"><strong>Subjects:</strong> 
+                            {% for subject in student.subjects.all %}
+                                {{ subject.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p class="card-text"><strong>Phone:</strong> {{ student.phone_number }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ student.address }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<body/>
+<html/>

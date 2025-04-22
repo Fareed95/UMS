@@ -1,0 +1,99 @@
+/* Main container styling */
+
+
+body{
+    background-color:  rgb(185, 156, 118);
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+p.lead {
+    font-size: 1.2em;
+    color: #34495e;
+}
+
+/* Row styling for responsive layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card styling */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Center text inside card */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+    padding: 20px; /* Padding for image area */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.card-subtitle {
+    font-size: 1.1em;
+    color: #7f8c8d;
+}
+
+.card-text {
+    font-size: 0.95em;
+    color: #666;
+}
+
+.card-footer {
+    padding: 15px;
+    background-color: #f8f9fa; /* Light background for footer */
+}
+
+/* Button styling */
+.btn {
+    text-decoration: none;
+    color: #2980b9;
+    border: 2px solid #2980b9;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    color: #fff;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}

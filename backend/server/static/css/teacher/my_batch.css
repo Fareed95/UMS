@@ -1,0 +1,141 @@
+/* Main container styling */
+
+body {
+    background-color:  rgb(185, 156, 118);
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Card styling */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* Subject tags styling */
+.card-text strong {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.card-text {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Row styling for responsive layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.col-md-4 {
+    flex: 1 1 300px;
+    max-width: 300px;
+}
+
+/* Navbar styling */
+.wrapper {
+    background-color: #34495e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.wrapper ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.wrapper ul li {
+    display: inline;
+}
+
+.wrapper ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.wrapper ul li a:hover {
+    color: #1abc9c;
+}
+
+/* Menu button styling for smaller screens */
+.menu-btn {
+    display: none;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .wrapper ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-btn {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5em;
+        color: #ecf0f1;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}

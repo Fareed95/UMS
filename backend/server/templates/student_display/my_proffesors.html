@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/teacher/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/student/my_proffesors.css' %}">
+    <script src="{% static 'js/profile.js' %}" defer></script>
+</head>
+<body>
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+    <div class="wrapper">
+        <ul>
+            <li><a href="{%url 'page_of_student'%}">Home</a></li>
+            <li><a href="{%url 'profile'%}">Your Profile</a></li>
+            <li><a href="{%url 'batch'%}">Your Professors</a></li>
+            <li><a href="#">Documents</a></li>
+            <li><a href="#">Notices</a></li>
+            <li><a href="{%url 'logout'%}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="container my-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Available Professors for Your Course</h1>
+            <p class="lead">Professors teaching <strong>{{ student_profile.course }}</strong> in <strong>{{ student_profile.branch }}</strong></p>
+        </div>
+    
+        <div class="row">
+            {% for professor in professors %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-lg mb-5">
+                        <!-- Profile Image with rounded corners -->
+                        <div class="card-img-top text-center p-4">
+                            {% if professor.profile_image %}
+                                <img src="{{ professor.profile_image.url }}" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile Image">
+                            {% else %}
+                                <img src="{% static 'default-profile.png' %}" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Default Profile Image">
+                            {% endif %}
+                        </div>
+    
+                        <!-- Card Body with Professor Info -->
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ professor.user.name }}</h5>
+                            <p class="card-subtitle text-muted mb-2">{{ professor.branch }}</p>
+                            
+                            <hr class="my-3">
+    
+                            <!-- Course Information -->
+                            <p class="mb-2"><strong>Course:</strong> {{ professor.course }}</p>
+    
+                            <!-- Subject Information -->
+                            <p class="mb-2"><strong>Subject:</strong> {{ professor.subject | default:"Not specified" }}</p>
+    
+                            <!-- Contact Information -->
+                            <p class="mb-2"><strong>Phone:</strong> {{ professor.phone_number | default:"N/A" }}</p>
+                            <p class="mb-2"><strong>Address:</strong> {{ professor.address | default:"N/A" }}</p>
+                        </div>
+    
+                        <!-- Card Footer with Action Buttons -->
+                        <div class="card-footer text-center">
+                            <a href="mailto:{{ professor.user.email }}" class="btn btn-outline-primary btn-sm">Email Professor</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+<body/>
+<html/> 

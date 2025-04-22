@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import home, about,courses, login_user, page_of_teacher, page_of_student, profile_edit, profile_view, LogoutPage
+from . views import home, about,courses, login_user, page_of_teacher, page_of_student, profile_edit, profile_view, LogoutPage, batch
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import  staticfiles_urlpatterns
@@ -14,6 +14,7 @@ urlpatterns = [
     path('home_student/',page_of_student,name=  'page_of_student'),
     path('profile/', profile_view, name='profile'),
     path('profile/edit/', profile_edit, name='profile_edit'),
+    path('batch/', batch, name='batch'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

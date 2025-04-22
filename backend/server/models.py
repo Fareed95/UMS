@@ -35,7 +35,7 @@ class Courses(models.Model):
     
 
 
-class Profile(models.Model):
+class Proffesor_Profile(models.Model):
     profile_image = models.ImageField( upload_to='profile/', height_field=None, width_field=None, max_length=None, null=True , blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     course = models.TextField(null=True, blank=True)
@@ -46,6 +46,35 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
+
+
+
+class Subject(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__  (self):
+        return self.name
+
+class Student_Profile(models.Model):
+    profile_image = models.ImageField( upload_to='profile/', height_field=None, width_field=None, max_length=None, null=True , blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    course = models.TextField(null=True, blank=True)
+    branch = models.TextField(_("Branch"),  null=True, blank=True)
+    subjects = models.ManyToManyField(Subject, blank=True) 
+    address = models.TextField(null=True, blank=True)
+    phone_number= PhoneNumberField(null =  True, blank = True)
+
+    def __str__(self):
+        return self.user.email
     
 
 
+class Documents(models.Model):
+    document = models.FileField(upload_to='documents/',null=True, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    professor = models.ForeignKey(Proffesor_Profile, on_delete=models.CASCADE, related_name='documents', null=True, blank=True)  # Link to professor
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, related_name='documents', null= True , blank=True)  # Link to course
+
+    def __str__(self):
+        return self.name
